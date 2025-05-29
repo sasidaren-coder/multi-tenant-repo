@@ -1,0 +1,137 @@
+#Optional
+#String
+#This is the IaC module version to be used by the pipeline. If not specified, the latest release of IaC will be used.
+pipeline_version: 1.0.0
+
+topic:
+
+  #Required
+  #String
+  #Max Length 249 chars
+  #Allowed Chars - a-z, A-Z, 0-9, . (dot), _ (underscore), and - (dash)
+  #Naming convention: DataCenter.Environment.OwningMalAcronym.EnterpriseDesignatorTaxonomy.CapabilityTaxonomy.Format.MessagePattern
+  name: "<Topic Name with naming convention>"
+
+  #Optional
+  #String
+  #Max Length 249 chars
+  #Allowed Chars - a-z, A-Z, 0-9, _ (underscore)
+  #This field will be used as the tf state file name. If not provided, the name would be derieved from the filename.
+  alias_name: "<Friendly name>"
+
+  #Optional
+  #String
+  #Max Length 500 chars
+  #Just a metadata
+  description: "<Description about topic>"
+
+  #Required
+  #String
+  #Max Length 10 chars
+  #Owner of the Topic. Just a metadata
+  mal_acronym: "<MAL Acronym>"
+
+  #Required
+  #String
+  #Max Length 10 chars
+  #Just a metadata
+  srb_review_number: "<SRB Review Ticket>"
+  
+  ## Following are basic configurations supported
+  #Optional
+  #Integer
+  #Default value: Dev-3, Test-3, Prod-3
+  partitions: 1
+  
+  #Optional
+  #String
+  #Default value: Dev-7d, Test-7d, Prod-14d
+  #Supported units: s (seconds), m(minutes), h(hours), d(days)
+  retention: "1d"
+
+  #Optional
+  #String
+  #Default value: delete
+  #Supported values: delete, compact
+  cleanup_policy: "delete"
+  
+  # Following are advanced configurations supported - Optional
+
+  config:
+    # Following are only supported in the config section - As per 2.25 version of Confluent provider
+
+    #Optional
+    #Integer
+    #Default value: 86400000
+    delete.retention.ms: 86400000
+    
+    #Optional
+    #Integer
+    #Default value: 1048576
+    max.message.bytes: 1048576
+    
+    #Optional
+    #Integer
+    #Default value: 86400000
+    max.compaction.lag.ms: 86400000
+
+    #Optional
+    #Integer
+    #Default value: 86400000
+    message.timestamp.difference.max.ms: 86400000
+
+    #Optional
+    #Integer
+    #Default value: 86400000
+    message.timestamp.before.max.ms: 86400000
+
+    #Optional
+    #Integer
+    #Default value: 86400000
+    message.timestamp.after.max.ms:   86400000
+
+    #Optional
+    #String
+    #Default value: CreateTime
+    message.timestamp.type: "CreateTime"
+
+    #Optional
+    #Integer
+    #Default value: 0
+    min.compaction.lag.ms: 0 
+
+    #Optional
+    #Integer
+    min.insync.replicas: 1 
+
+    #Optional
+    #BigInt
+    retention.bytes: 1073741824
+
+    #Optional
+    #Integer
+    retention.ms: 604800000
+
+    #Optional
+    #BigInt
+    segment.bytes:  1073741824
+
+    #Optional
+    #Integer
+    segment.ms: 604800000
+
+    #Optional
+    #Boolean
+    confluent.key.schema.validation: "false"
+
+    #Optional
+    #Boolean
+    confluent.value.schema.validation: "false"
+
+    #Optional
+    #String
+    confluent.key.subject.name.strategy: "TopicNameStrategy"
+
+    #Optional
+    #String
+    confluent.value.subject.name.strategy:  "TopicNameStrategy"

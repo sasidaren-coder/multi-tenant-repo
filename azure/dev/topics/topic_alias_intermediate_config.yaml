@@ -1,0 +1,12 @@
+pipeline_version: 1.0.0 #Optional - Version of IaC module to be used - If not specified, the latest release of IaC will be used.
+topic:
+  name: "<Topic Name with naming convention>" #Required - Naming convention - DataCenter.Environment.OwningMalAcronym.EnterpriseDesignatorTaxonomy.CapabilityTaxonomy.Format.MessagePattern
+  alias_name: "<Friendly name>" #Optional - This is would be the name of the tf state file. If not provided, would be derieved from the filename. 
+  description: "<Description about topic>" #Optional - Just a metadata
+  mal_acronym: "<MAL Acronym>" #Required - Just a metadata
+  srb_review_number: "<SRB Review Ticket>" #Required - Just a metadata
+  
+  # Following are basic configurations supported
+  partitions: 1 #Optional
+  retention: 1d #Optional #Supported units: s (seconds), m(minutes), h(hours), d(days)
+  cleanup_policy: "delete" #Optional #Supported values: delete, compact
